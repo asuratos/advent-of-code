@@ -105,7 +105,7 @@ fn find_word(string: &str, word: &str) -> Option<Vec<Number>> {
 
 fn translate_line(line: &str) -> Option<Vec<Number>> {
     // Get vector for words
-    let  mut found_words: Vec<Number> = WORDS
+    let mut found_words: Vec<Number> = WORDS
         .get()?
         .keys()
         .filter_map(|word| find_word(line, word))
