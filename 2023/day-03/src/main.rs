@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-#[derive(PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 struct Location(isize, isize);
 
 impl Location {
@@ -17,6 +17,12 @@ impl Location {
 
         neighbors
     }
+}
+
+#[derive(Debug)]
+struct Number {
+    value: i32,
+    location: HashSet<Location>,
 }
 
 /// struct to hold the schematic, for easier addressing of specific locations.
@@ -37,13 +43,32 @@ impl Schematic {
 
         Ok(Schematic { contents: schem })
     }
+
     fn symbol_at(&self, loc: Location) -> Option<char> {
-        self.contents[loc.1].chars().nth(loc.0)
+        if loc.0 < 0 || loc.1 < 0 {
+            return None;
+        }
+
+        self.contents
+            .get(loc.1 as usize)?
+            .chars()
+            .nth(loc.0 as usize)
+    }
+
+    fn find_numbers(&self) -> Vec<Number> {
+        self.contents
+            .iter()
+            .enumerate()
+            .map(|(y, line)| line.chars().enumerate().map(|(x, c)| {}));
+
+        vec![]
     }
 }
 
 fn main() -> Result<(), String> {
     let schem = Schematic::read_file("input.txt")?;
+
+    let numbers: Vec<Number> = schem.find_numbers();
 
     Ok(())
 }
