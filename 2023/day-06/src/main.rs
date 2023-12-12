@@ -1,4 +1,4 @@
-fn distance_travelled(hold: &i64, racetime: &i64) -> i64{
+fn distance_travelled(hold: &i64, racetime: &i64) -> i64 {
     hold * (racetime - hold)
 }
 
@@ -18,5 +18,5 @@ fn main() {
 
     println!("{}", product);
 
-    println!("{}", count_wins( 58819676, 434104122191218));
+    println!("{}", count_wins(58819676, 434104122191218));
 }
